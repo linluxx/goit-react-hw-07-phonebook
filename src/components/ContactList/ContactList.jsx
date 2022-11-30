@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { FaRegUserCircle } from 'react-icons/fa';
 
-import { getContacts, getFilter } from 'redux/selectors';
-import { deleteContact } from 'redux/slices/contactsSlice';
+import { selectContacts, selectFilter } from 'redux/selectors';
+import { deleteContact } from 'redux/operations';
 
 import {
   ContactName,
@@ -13,8 +13,8 @@ import {
 } from './ContactList.styled';
 
 export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const filterContacts = () => {
@@ -27,12 +27,12 @@ export const ContactList = () => {
 
   return (
     <ContactsList>
-      {filtered.map(({ id, name, number }) => (
+      {filtered.map(({ id, name, phone }) => (
         <ContactsItem key={id}>
           <ContactName>
             <FaRegUserCircle /> {name}
           </ContactName>
-          <ContactNumber> {number}</ContactNumber>
+          <ContactNumber> {phone}</ContactNumber>
           <DeleteButton
             type="button"
             onClick={() => {

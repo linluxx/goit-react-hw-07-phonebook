@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-import { addContact } from 'redux/slices/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 import { Form, Label, Input, SubmitButton } from './ContactForm.styled';
 
@@ -13,7 +13,7 @@ export const ContactForm = () => {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const resetField = () => {
     setName('');
@@ -28,8 +28,7 @@ export const ContactForm = () => {
         position: 'center-top',
       });
     }
-
-    dispatch(addContact(name, number));
+    dispatch(addContact({ name: name, phone: number }));
     resetField();
   };
 
