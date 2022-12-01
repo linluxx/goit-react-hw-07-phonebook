@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import normalize from 'normalize.css';
 
-import { App } from 'components/App';
+import { App } from 'components/App/App';
 import { theme } from './constants/theme';
 import { store } from 'redux/store';
 import { baseStyles } from 'constants/globalStyles';
